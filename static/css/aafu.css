@@ -4,6 +4,31 @@ body {
   transition: all 0.15s;
   background-color: var(--primaryBg);
   color: var(--primaryText);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.profile-area {
+  width: 45%;
+  max-width: 450px;
+  min-width: 350px;
+}
+.accordion-area {
+  padding-left: 1em;
+}
+@media only screen and (max-width: 600px) {
+  .home-page {
+    flex-wrap: wrap;
+  }
+  .profile-area {
+    width: 100%;
+    max-width: initial;
+    min-width: initial;
+  }
+  .accordion-area {
+    margin-top: 1.5em;
+    padding-left: 0;
+  }
 }
 .content img {
   width: 100%;
@@ -13,7 +38,7 @@ pre {
   color: var(--secondaryText);
   padding: 6px 12px;
   border-radius: 5px;
-  box-shadow: 0px 0px 3px 1px var(--shadow) !important;
+  box-shadow: 0px 0px 2px 1px var(--shadow) !important;
 }
 code {
   font-family: "Roboto Mono", monospace !important;
@@ -21,6 +46,11 @@ code {
 }
 footer {
   font-size: 0.9em !important;
+}
+.regular-footer {
+  margin: 10px 0;
+  border-top: solid 1px var(--primaryLinks);
+  padding-top: 1em;
 }
 dt {
   font-weight: 400;
@@ -52,13 +82,6 @@ a:hover,
 }
 #skill-percent {
   background-color: var(--primaryLinks);
-}
-.profile-area {
-  background-color: var(--secondaryBg);
-  color: var(--secondaryText);
-}
-.shadow {
-  box-shadow: -4px -4px 5px 2px var(--shadow) !important;
 }
 .top-h1 {
   font-size: 2.5em;
@@ -97,4 +120,43 @@ a:hover,
 }
 .aafu-border {
   border-color: var(--primaryLinks) !important;
+}
+blockquote {
+  margin-left: 0.5em;
+  padding: 0.5em;
+  border-left: solid 4px var(--primaryLinks);
+  background-color: var(--secondaryBg);
+  border-radius: 5px;
+}
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  border: solid 1px var(--primaryLinks);
+  padding: 5px;
+}
+.home-page-footer {
+  text-align: center;
+}
+.main-menu > a {
+  padding: 2px 4px;
+  border: solid 1px var(--primaryLinks);
+  margin-right: 1em;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.main-menu > a:hover {
+  color: var(--primaryBg);
+  background-color: var(--primaryLinks);
+}
+.read-more {
+  padding: 2px 3px;
+  border: solid 1px var(--primaryLinks);
+  border-radius: 3px;
+  text-decoration: none !important;
+}
+.read-more:hover {
+  color: var(--primaryBg);
+  background-color: var(--primaryLinks);
 }

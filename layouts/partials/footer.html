@@ -1,12 +1,13 @@
-<footer class="{{ if .IsHome }} mt-2 mb-2 {{ else }} mt-2 mb-4 text-center {{ end }}">
+<footer class="{{ if .IsHome }} home-page-footer {{ else }} regular-footer {{ end }}">
+  {{ if eq .Kind "page" }}
+  {{ partial "prevnext" . }}
+  {{ end }}
   <span class="markdownify">{{ .Site.Params.copyright | markdownify }}</span>
-  <span {{ if not .Site.Params.theme.showAttribute }}style="font-size:0px;"{{ end }}>
-    &middot;
-    <i>
-      <a href="https://github.com/darshanbaral/aafu">
-        aafu
-      </a>
-    </i>
+  <br>
+  <span {{ if not .Site.Params.theme.showAttribute }} style="font-size:0px;" {{ end }}>
+    <a href="https://github.com/darshanbaral/aafu">
+      aafu
+    </a>
     by
     <a href="https://www.darshanbaral.com/">
       darshan

@@ -1,14 +1,29 @@
 {{ define "main" }}
-<div class="ml-auto mr-auto row row-eq-height rounded">
-  <div class="col-md-5 text-center p-2 mt-1">
-    <div class="profile-area rounded text-center position-relative shadow">
+<div
+  class="home-page"
+  style="display: flex; flex-direction: row; margin: 10px 0;"
+>
+  <div class="profile-area">
+    <div
+      style="
+        border-radius: 5px;
+        padding: 10px 5px;
+        box-shadow: -4px -4px 5px 2px var(--shadow);
+        background-color: var(--themeColor);
+        color: var(--secondaryText);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      "
+    >
       {{ partial "profilePhoto" . }}
-      <div class="p-2">
-        {{ partial "social" . }} {{ partial "footer" . }}
-      </div>
+      {{ partial "infoAndSocial" . }}
+      {{ partial "footer" . }}
     </div>
   </div>
-  <div class="col-md-7 pt-2 mt-3">
+
+  <div class="accordion-area">
     {{ range .Site.Params.showInAccordion }}
     <h2 class="accordion {{ if .expand }} active {{ end }}">
       {{ $current := index $.Site.Params .item }}
