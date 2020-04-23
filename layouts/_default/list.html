@@ -1,17 +1,95 @@
-{{ define "main" }} {{ range (.Paginator 10).Pages }}
-<div style="border-radius: 5px; margin: 5px 0 20px 0; padding: 5px 5px 10px 5px; background-color: var(--secondaryBg);">
-  <small>{{ .Date.Format "1/2/2006" }}</small>
-  <h2 class="accordion">
-    <span onclick="expandAccordion(this)" style="cursor: pointer;">
-      {{ .Title -}}
-    </span>
-  </h2>
-  <div class="panel overflow-hidden">
-    <p>{{ .Summary | plainify | truncate 180 }}</p>
-    <a class="read-more" href="{{ .Permalink }}">Read More</a>
+{{ define "main" }} {{ range $key, $val := (.Paginator 10).Pages }}
+<div style="display: flex; flex-direction: column;">
+  <div
+    class="accordion-title {{ if eq $key 0 }} active {{ end }}"
+    onclick="expandPanel(this)"
+    style="
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px 5px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 3px 3px 2px 1px var(--shadow) !important;
+      {{ if gt $key 0 }}margin-top: 1em; {{ end }}
+    "
+  >
+    <h1 style="padding: 2px 3px; border-radius: 3px; font-size: 1.4em;">
+      {{ .Title }}
+    </h1>
+    <i
+      class="chevron {{ if eq $key 0 }} active {{ end }}"
+      style="
+        transition: 0.3s ease-out;
+        width: 15px;
+        display: flex;
+        margin-right: 0.3em;
+        transform: rotate(90deg);
+        color: var(--primaryLinks);
+      "
+    >
+      {{ partial "icons/chevron" . }}
+    </i>
+  </div>
+
+  <div
+    class="panel {{ if eq $key 0 }} active {{ end }}"
+    style="
+      overflow: hidden; 
+      width: 98%;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: var(--secondaryBg);
+      border-radius: 0 0 5px 5px;
+      {{ if eq $key 0 }}
+      border: solid 1px var(--primaryLinks);
+      {{ end }}
+    "
+  >
+    <div style="padding: 10px;">
+      <p style="margin: 0.5em 0 0.75em 0;">
+        {{ .Summary | plainify | truncate 180 }}
+      </p>
+      <a
+        style="
+          padding: 4px;
+          border: solid 1px var(--primaryLinks);
+          border-radius: 5px;
+        "
+        href="{{ .Permalink }}"
+        >Read More</a
+      >
+      <div style="margin-top: 0.75em;">
+        {{ partial "metadata" . }}
+      </div>
+    </div>
   </div>
 </div>
 {{ end }}
-<script src="{{ `js/accordion.js` | relURL }}"></script>
-
+<script>
+  const expandPanel = (elem) => {
+    const activeAccordionTitle = document.querySelector(
+      ".accordion-title.active"
+    );
+    const activePanel = document.querySelector(".active.panel");
+    const thisPanel = elem.parentElement.querySelector(".panel");
+    const thisChevron = elem.querySelector(".chevron");
+    const activeChevron = document.querySelector(".active.chevron");
+    if (!elem.classList.contains("active")) {
+      elem.classList.add("active");
+      activeAccordionTitle.classList.remove("active");
+      activePanel.classList.remove("active");
+      activePanel.style.maxHeight = "0";
+      activePanel.style.border = "none";
+      thisPanel.classList.add("active");
+      thisPanel.style.maxHeight = thisPanel.scrollHeight + "px";
+      thisPanel.style.border = "solid 1px var(--primaryLinks)";
+      activeChevron.classList.remove("active");
+      activeChevron.style.transform = "rotate(90deg)";
+      thisChevron.classList.add("active");
+      thisChevron.style.transform = "rotate(180deg)";
+    }
+  };
+</script>
 {{ end }}

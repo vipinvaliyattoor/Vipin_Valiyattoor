@@ -202,7 +202,7 @@ theme = "aafu"
     # Hobby section
     [params.hobby]
         title = "Hobbies"
-        icon = "fas fa-gamepad"
+        icon = "gamepad"
 		
         [[params.hobby.list]]		
 		    hobby = "Cooking"

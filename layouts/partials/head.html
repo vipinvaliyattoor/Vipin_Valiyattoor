@@ -22,22 +22,23 @@
   <link rel="stylesheet" href="{{ print "/css/aafu_" .Site.Params.theme.mainTheme ".css" | relURL }}" />
   <link rel="stylesheet" href="{{ `/css/aafu.css` | relURL }}" />
 
+ 
   <script>
+    const expandDefaultPanel = () => {
+      let defaultActivePanel = document.querySelector(".panel.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.style.maxHeight =
+          defaultActivePanel.scrollHeight + "px";
+      }
+    };
     var themeColor = document.querySelector("meta[name=theme-color]");
     window.onload = () => {
       themeColor.content = getComputedStyle(document.body)["background-color"];
-      let defaultActivePanel = document.querySelector(".accordion.active");
-      if (defaultActivePanel) {
-        defaultActivePanel.nextElementSibling.style.maxHeight =
-          defaultActivePanel.nextElementSibling.scrollHeight + "px";
-      }
+      expandDefaultPanel();
     };
     window.onresize = () => {
-      let defaultActivePanel = document.querySelector(".accordion.active");
-      if (defaultActivePanel) {
-        defaultActivePanel.nextElementSibling.style.maxHeight =
-          defaultActivePanel.nextElementSibling.scrollHeight + "px";
-      }
+      expandDefaultPanel();
     };
   </script>
+
 </head>

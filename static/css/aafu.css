@@ -16,6 +16,16 @@ body {
 .accordion-area {
   padding-left: 1em;
 }
+.accordion-title {
+  background-color: var(--primaryBg);
+  border: solid 1px var(--primaryLinks);
+}
+.accordion-title:hover {
+  background-color: var(--secondaryBg);
+}
+.accordion-title.active {
+  background-color: var(--secondaryBg);
+}
 @media only screen and (max-width: 600px) {
   .home-page {
     flex-wrap: wrap;
@@ -35,12 +45,12 @@ body {
 }
 pre {
   background-color: var(--secondaryBg);
-  color: var(--secondaryText);
   padding: 6px 12px;
   border-radius: 5px;
   box-shadow: 0px 0px 2px 1px var(--shadow) !important;
 }
 code {
+  color: var(--secondaryText) !important;
   font-family: "Roboto Mono", monospace !important;
   font-size: 1em !important;
 }
@@ -151,12 +161,18 @@ td {
   background-color: var(--primaryLinks);
 }
 .read-more {
-  padding: 2px 3px;
   border: solid 1px var(--primaryLinks);
-  border-radius: 3px;
   text-decoration: none !important;
 }
 .read-more:hover {
   color: var(--primaryBg);
   background-color: var(--primaryLinks);
+}
+kbd {
+  padding: 0.2rem 0.4rem;
+  margin: 0 0.2rem;
+  font-size: 87.5%;
+  color: var(--primaryBg);
+  background-color: var(--primaryText);
+  border-radius: 0.2rem;
 }

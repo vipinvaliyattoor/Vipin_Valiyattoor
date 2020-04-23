@@ -25,15 +25,19 @@
 
   <div class="accordion-area">
     {{ range .Site.Params.showInAccordion }}
-    <h2 class="accordion {{ if .expand }} active {{ end }}">
-      {{ $current := index $.Site.Params .item }}
-      <span onclick="expandAccordion(this)" style="cursor: pointer;">
-        <i class="{{ $current.icon }}"></i>
-        {{ $current.title -}}
-      </span>
-    </h2>
+    {{ $current := index $.Site.Params .item }}
     <div
-      class="panel overflow-hidden"
+      class="accordion"
+      onclick="expandAccordion(this)"
+      style="cursor: pointer; display: flex;"
+    >
+      <i style="width: 25px; display: flex; margin-right: 0.3em;">
+        {{ partial (print "icons/" $current.icon) . }}
+      </i>
+      <h2>{{ $current.title -}}</h2>
+    </div>
+    <div
+      class="panel {{ if .expand }} active {{ end }} overflow-hidden"
       {{ if $current.panelid }}
       id="{{ $current.panelid }}"
       {{ end }}
@@ -41,7 +45,22 @@
       {{ partial (print "accordion/" .item) $ }}
     </div>
     {{ end }}
-    <script src="{{ `js/accordion.js` | relURL }}"></script>
+    <script>
+      const expandAccordion = (elem) => {
+        const allPanels = Array.from(document.querySelectorAll(".panel"));
+        const thisPanel = elem.nextElementSibling;
+        if (!thisPanel.classList.contains("active")) {
+          allPanels.forEach((acc) => {
+            acc.classList.remove("active");
+          });
+          allPanels.forEach(function (elem) {
+            elem.style.maxHeight = 0;
+          });
+          thisPanel.classList.add("active");
+          thisPanel.style.maxHeight = thisPanel.scrollHeight + "px";
+        }
+      };
+    </script>
   </div>
 </div>
 {{ end }}
