@@ -1,16 +1,29 @@
-<footer class="{{ if .IsHome }} home-page-footer {{ else }} regular-footer {{ end }}">
+<footer
+  class="{{ if .IsHome }} home-page-footer {{ else }} regular-footer {{ end }}"
+>
   {{ if eq .Kind "page" }}
   {{ partial "prevnext" . }}
   {{ end }}
-  <span class="markdownify">{{ .Site.Params.copyright | markdownify }}</span>
-  <br>
-  <span {{ if not .Site.Params.theme.showAttribute }} style="font-size:0px;" {{ end }}>
-    <a href="https://github.com/darshanbaral/aafu">
-      aafu
-    </a>
-    by
-    <a href="https://www.darshanbaral.com/">
-      darshan
-    </a>
-  </span>
+  {{ if eq .Kind "section" }}
+  <div style="display: flex; justify-content: center;">
+    {{ template "_internal/pagination.html" . }}
+  </div>
+  {{ end }}
+  <div>
+    <span class="markdownify">{{ .Site.Params.copyright | markdownify }}</span>
+    <br />
+    <span
+      {{ if not .Site.Params.theme.showAttribute }}
+      style="font-size: 0px;"
+      {{ end }}
+    >
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+      by
+      <a href="https://www.darshanbaral.com/">
+        darshan
+      </a>
+    </span>
+  </div>
 </footer>

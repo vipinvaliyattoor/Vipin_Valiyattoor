@@ -1,9 +1,11 @@
 {{ define "main" }}
-<div class="border-bottom aafu-border">
+<div class="border-bottom aafu-border" style="padding-bottom: 1em;">
   <h1 class="standard top-h1 mb-3" style="font-size: 2.75em;">
     {{- .Title -}}
   </h1>
+  <div style="font-size: 0.9em;">
   {{- partial "metadata" . -}}
+</div>
 </div>
 <div class="content" style="margin-top: 2em;">
   {{ .Content }}

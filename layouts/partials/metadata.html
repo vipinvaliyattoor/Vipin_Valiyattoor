@@ -1,5 +1,5 @@
-<div style="display: flex; flex-direction: column; font-size: 0.8em;">
-  <p style="margin: 2px;">{{ .Date.Format "January 2, 2006" }}</p>
+<div style="display: flex; flex-direction: column;">
+  
   {{ $params := .Params }} {{ range $name, $value := .Site.Taxonomies }}
   {{ if index $params $name }}
   <p style="margin: 2px;">
@@ -8,11 +8,13 @@
       href="{{ $name | relURL }}/{{ . | urlize }}"
       title="{{ $name }}"
       style="
-        border: solid 1px;
-        padding: 0 2px;
+        padding: 1px 3px;
         margin: 0 2px;
+        border: solid 1px var(--primaryLinks);
         border-radius: 3px;
         text-decoration: none;
+        color: var(--primaryLinks);
+        background-color: var(--secondaryBg);
       "
     >
       {{- . -}}

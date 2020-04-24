@@ -47,15 +47,11 @@
     {{ end }}
     <script>
       const expandAccordion = (elem) => {
-        const allPanels = Array.from(document.querySelectorAll(".panel"));
+        const activePanel = document.querySelector(".panel.active");
         const thisPanel = elem.nextElementSibling;
         if (!thisPanel.classList.contains("active")) {
-          allPanels.forEach((acc) => {
-            acc.classList.remove("active");
-          });
-          allPanels.forEach(function (elem) {
-            elem.style.maxHeight = 0;
-          });
+          activePanel.classList.remove("active");
+          activePanel.style.maxHeight = 0;
           thisPanel.classList.add("active");
           thisPanel.style.maxHeight = thisPanel.scrollHeight + "px";
         }

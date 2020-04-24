@@ -57,9 +57,11 @@ code {
 footer {
   font-size: 0.9em !important;
 }
+.home-page-footer {
+  text-align: center;
+}
 .regular-footer {
   margin: 10px 0;
-  border-top: solid 1px var(--primaryLinks);
   padding-top: 1em;
 }
 dt {
@@ -97,11 +99,14 @@ a:hover,
   font-size: 2.5em;
 }
 .zoomlink {
-  font-size: 2em;
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 3px 5px 3px 5px;
 }
 .zoomlink:hover {
-  font-size: 1.9em;
   cursor: pointer;
+  margin: -5px 5px 3px 5px;
 }
 .panel {
   max-height: 0;
@@ -114,22 +119,23 @@ a:hover,
   height: 15px;
   transition: all 0.7s;
 }
-.pagination * {
-  background-color: var(--primaryBg) !important;
+ul.pagination > li > a {
   color: var(--primaryLinks) !important;
-}
-.page-item {
   border: solid 1px var(--primaryLinks) !important;
-}
-.page-item.disabled * {
-  color: var(--primaryText) !important;
-}
-.page-item.active * {
-  color: var(--secondaryText) !important;
   background-color: var(--secondaryBg) !important;
+  font-size: 1.2em;
 }
-.aafu-border {
-  border-color: var(--primaryLinks) !important;
+ul.pagination > li > a:hover,
+ul.pagination > li.active > a {
+  color: var(--primaryBg) !important;
+  background-color: var(--primaryLinks) !important;
+  border-left: solid 1px var(--secondaryBg) !important;
+  border-right: solid 1px var(--secondaryBg) !important;
+}
+ul.pagination > li.disabled > a {
+  color: var(--secondaryText) !important;
+  border: solid 1px var(--primaryLinks) !important;
+  background-color: var(--primaryBg) !important;
 }
 blockquote {
   margin-left: 0.5em;
@@ -146,9 +152,6 @@ td {
   border: solid 1px var(--primaryLinks);
   padding: 5px;
 }
-.home-page-footer {
-  text-align: center;
-}
 .main-menu > a {
   padding: 2px 4px;
   border: solid 1px var(--primaryLinks);
@@ -161,12 +164,12 @@ td {
   background-color: var(--primaryLinks);
 }
 .read-more {
-  border: solid 1px var(--primaryLinks);
-  text-decoration: none !important;
+  background-color: inherit;
+  color: var(--primaryLinks);
 }
 .read-more:hover {
-  color: var(--primaryBg);
   background-color: var(--primaryLinks);
+  color: var(--secondaryBg);
 }
 kbd {
   padding: 0.2rem 0.4rem;

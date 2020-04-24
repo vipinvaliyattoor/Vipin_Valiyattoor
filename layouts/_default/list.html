@@ -1,13 +1,15 @@
-{{ define "main" }} {{ range $key, $val := (.Paginator 10).Pages }}
+{{ define "main" }} {{ range $key, $val := (.Paginator 6).Pages }}
 <div style="display: flex; flex-direction: column;">
   <div
     class="accordion-title {{ if eq $key 0 }} active {{ end }}"
     onclick="expandPanel(this)"
     style="
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 10px 5px;
+      padding: 10px;
       transition: background-color 0.3s;
       cursor: pointer;
       border-radius: 5px;
@@ -15,9 +17,25 @@
       {{ if gt $key 0 }}margin-top: 1em; {{ end }}
     "
   >
-    <h1 style="padding: 2px 3px; border-radius: 3px; font-size: 1.4em;">
-      {{ .Title }}
-    </h1>
+    <div>
+      <small style="margin: 2px;">{{ .Date.Format "January 2, 2006" }}</small>
+      <h1 style="padding: 3px 0; border-radius: 3px; font-size: 1.3em;">
+        {{ .Title }}
+      </h1>
+      <a
+        class="read-more"
+        style="
+          padding: 3px;
+          font-weight: 700;
+          text-decoration: none;
+          border-radius: 5px;
+          position: relative;
+          z-index: 2;
+        "
+        href="{{ .Permalink }}"
+        >READ MORE</a
+      >
+    </div>
     <i
       class="chevron {{ if eq $key 0 }} active {{ end }}"
       style="
@@ -25,19 +43,18 @@
         width: 15px;
         display: flex;
         margin-right: 0.3em;
-        transform: rotate(90deg);
+        transform: {{ if eq $key 0 }} rotate(180deg) {{ else }} rotate(90deg) {{ end }};
         color: var(--primaryLinks);
       "
     >
       {{ partial "icons/chevron" . }}
     </i>
   </div>
-
   <div
     class="panel {{ if eq $key 0 }} active {{ end }}"
     style="
       overflow: hidden; 
-      width: 98%;
+      width: 99%;
       margin-left: auto;
       margin-right: auto;
       background-color: var(--secondaryBg);
@@ -47,48 +64,40 @@
       {{ end }}
     "
   >
-    <div style="padding: 10px;">
-      <p style="margin: 0.5em 0 0.75em 0;">
-        {{ .Summary | plainify | truncate 180 }}
-      </p>
-      <a
-        style="
-          padding: 4px;
-          border: solid 1px var(--primaryLinks);
-          border-radius: 5px;
-        "
-        href="{{ .Permalink }}"
-        >Read More</a
-      >
-      <div style="margin-top: 0.75em;">
+    <div style="padding: 0.5em;">
+      <div style="margin-bottom: 1em; font-size: 0.85em;">
         {{ partial "metadata" . }}
       </div>
+      {{ .Summary | plainify | truncate 180 }}
     </div>
   </div>
 </div>
+
 {{ end }}
 <script>
   const expandPanel = (elem) => {
-    const activeAccordionTitle = document.querySelector(
-      ".accordion-title.active"
-    );
-    const activePanel = document.querySelector(".active.panel");
-    const thisPanel = elem.parentElement.querySelector(".panel");
-    const thisChevron = elem.querySelector(".chevron");
-    const activeChevron = document.querySelector(".active.chevron");
-    if (!elem.classList.contains("active")) {
-      elem.classList.add("active");
-      activeAccordionTitle.classList.remove("active");
-      activePanel.classList.remove("active");
-      activePanel.style.maxHeight = "0";
-      activePanel.style.border = "none";
-      thisPanel.classList.add("active");
-      thisPanel.style.maxHeight = thisPanel.scrollHeight + "px";
-      thisPanel.style.border = "solid 1px var(--primaryLinks)";
-      activeChevron.classList.remove("active");
-      activeChevron.style.transform = "rotate(90deg)";
-      thisChevron.classList.add("active");
-      thisChevron.style.transform = "rotate(180deg)";
+    if (!event.target.classList.contains("read-more")) {
+      const activeAccordionTitle = document.querySelector(
+        ".accordion-title.active"
+      );
+      const activePanel = document.querySelector(".active.panel");
+      const thisPanel = elem.parentElement.querySelector(".panel");
+      const thisChevron = elem.querySelector(".chevron");
+      const activeChevron = document.querySelector(".active.chevron");
+      if (!elem.classList.contains("active")) {
+        elem.classList.add("active");
+        activeAccordionTitle.classList.remove("active");
+        activePanel.classList.remove("active");
+        activePanel.style.maxHeight = "0";
+        activePanel.style.border = "none";
+        thisPanel.classList.add("active");
+        thisPanel.style.maxHeight = thisPanel.scrollHeight + "px";
+        thisPanel.style.border = "solid 1px var(--primaryLinks)";
+        activeChevron.classList.remove("active");
+        activeChevron.style.transform = "rotate(90deg)";
+        thisChevron.classList.add("active");
+        thisChevron.style.transform = "rotate(180deg)";
+      }
     }
   };
 </script>
