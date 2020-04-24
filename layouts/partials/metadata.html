@@ -1,8 +1,8 @@
 <div style="display: flex; flex-direction: column;">
-  
+  Reading Time: {{ if gt .ReadingTime 1 }} {{ .ReadingTime }}  minutes {{ else }} < 1 minute {{ end }}
   {{ $params := .Params }} {{ range $name, $value := .Site.Taxonomies }}
   {{ if index $params $name }}
-  <p style="margin: 2px;">
+  <p style="margin: 2px 0;">
     {{ $name | humanize }}: {{ range index $params $name }}
     <a
       href="{{ $name | relURL }}/{{ . | urlize }}"

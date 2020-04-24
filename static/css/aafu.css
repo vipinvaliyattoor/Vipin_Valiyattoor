@@ -16,15 +16,24 @@ body {
 .accordion-area {
   padding-left: 1em;
 }
-.accordion-title {
+.accordion-title.listpage {
   background-color: var(--primaryBg);
   border: solid 1px var(--primaryLinks);
 }
-.accordion-title:hover {
+.accordion-title.listpage:hover {
   background-color: var(--secondaryBg);
 }
-.accordion-title.active {
+.accordion-title.listpage.active {
   background-color: var(--secondaryBg);
+  box-shadow: 0px 0px 3px 1px var(--shadow) !important;
+}
+.panel {
+  max-height: 0;
+  transition: 0.3s ease-out;
+}
+.panel.active.listpage {
+  border: solid 1px var(--primaryLinks);
+  box-shadow: 0px 0px 3px 1px var(--shadow) !important;
 }
 @media only screen and (max-width: 600px) {
   .home-page {
@@ -102,15 +111,11 @@ a:hover,
   display: block;
   width: 30px;
   height: 30px;
-  margin: 3px 5px 3px 5px;
+  margin: 3px 6px 3px 6px;
 }
 .zoomlink:hover {
   cursor: pointer;
-  margin: -5px 5px 3px 5px;
-}
-.panel {
-  max-height: 0;
-  transition: 0.3s ease-out;
+  margin: -5px 6px 3px 6px;
 }
 .skillbar {
   border-radius: 3px;
@@ -162,14 +167,6 @@ td {
 .main-menu > a:hover {
   color: var(--primaryBg);
   background-color: var(--primaryLinks);
-}
-.read-more {
-  background-color: inherit;
-  color: var(--primaryLinks);
-}
-.read-more:hover {
-  background-color: var(--primaryLinks);
-  color: var(--secondaryBg);
 }
 kbd {
   padding: 0.2rem 0.4rem;

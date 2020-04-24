@@ -9,7 +9,11 @@
     {{ template "_internal/pagination.html" . }}
   </div>
   {{ end }}
-  <div>
+  <div
+    {{ if not .IsHome }}
+    style="border-top: solid 1px var(--primaryLinks); padding-top: 1em;"
+    {{ end }}
+  >
     <span class="markdownify">{{ .Site.Params.copyright | markdownify }}</span>
     <br />
     <span

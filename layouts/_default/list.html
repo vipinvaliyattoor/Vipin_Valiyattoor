@@ -1,7 +1,7 @@
 {{ define "main" }} {{ range $key, $val := (.Paginator 6).Pages }}
 <div style="display: flex; flex-direction: column;">
   <div
-    class="accordion-title {{ if eq $key 0 }} active {{ end }}"
+    class="accordion-title listpage {{ if eq $key 0 }} active {{ end }}"
     onclick="expandPanel(this)"
     style="
       position: relative;
@@ -13,28 +13,24 @@
       transition: background-color 0.3s;
       cursor: pointer;
       border-radius: 5px;
-      box-shadow: 3px 3px 2px 1px var(--shadow) !important;
       {{ if gt $key 0 }}margin-top: 1em; {{ end }}
     "
   >
     <div>
       <small style="margin: 2px;">{{ .Date.Format "January 2, 2006" }}</small>
-      <h1 style="padding: 3px 0; border-radius: 3px; font-size: 1.3em;">
-        {{ .Title }}
-      </h1>
-      <a
-        class="read-more"
+      <h1 
         style="
-          padding: 3px;
+          padding: 3px 0;
+          border-radius: 3px;
+          font-size: 1.3em;
           font-weight: 700;
-          text-decoration: none;
-          border-radius: 5px;
-          position: relative;
-          z-index: 2;
         "
-        href="{{ .Permalink }}"
-        >READ MORE</a
       >
+        <a class="read-more"
+          href="{{ .Permalink }}">
+          {{ .Title }}</a
+        >
+      </h1>
     </div>
     <i
       class="chevron {{ if eq $key 0 }} active {{ end }}"
@@ -51,24 +47,34 @@
     </i>
   </div>
   <div
-    class="panel {{ if eq $key 0 }} active {{ end }}"
+    class="panel listpage {{ if eq $key 0 }} active {{ end }}"
     style="
-      overflow: hidden; 
+      overflow: hidden;
       width: 99%;
       margin-left: auto;
       margin-right: auto;
       background-color: var(--secondaryBg);
       border-radius: 0 0 5px 5px;
-      {{ if eq $key 0 }}
-      border: solid 1px var(--primaryLinks);
-      {{ end }}
     "
   >
-    <div style="padding: 0.5em;">
+    <div style="padding: 0.5em 0.5em 1em 0.5em;">
       <div style="margin-bottom: 1em; font-size: 0.85em;">
         {{ partial "metadata" . }}
       </div>
-      {{ .Summary | plainify | truncate 180 }}
+      <p>
+        {{ .Summary | plainify | truncate 180 }}
+      </p>
+      <a
+        style="
+          padding: 5px;
+          border: solid 1px var(--primaryLinks);
+          text-decoration: none;
+          border-radius: 5px;
+          font-size: 1em;
+        "
+        href="{{ .Permalink }}"
+        >Read More...</a
+      >
     </div>
   </div>
 </div>
@@ -89,10 +95,8 @@
         activeAccordionTitle.classList.remove("active");
         activePanel.classList.remove("active");
         activePanel.style.maxHeight = "0";
-        activePanel.style.border = "none";
         thisPanel.classList.add("active");
         thisPanel.style.maxHeight = thisPanel.scrollHeight + "px";
-        thisPanel.style.border = "solid 1px var(--primaryLinks)";
         activeChevron.classList.remove("active");
         activeChevron.style.transform = "rotate(90deg)";
         thisChevron.classList.add("active");

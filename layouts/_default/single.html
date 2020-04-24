@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="border-bottom aafu-border" style="padding-bottom: 1em;">
+<div style="padding-bottom: 1em; border-bottom: solid 1px var(--primaryLinks);">
   <h1 class="standard top-h1 mb-3" style="font-size: 2.75em;">
     {{- .Title -}}
   </h1>
@@ -7,7 +7,7 @@
   {{- partial "metadata" . -}}
 </div>
 </div>
-<div class="content" style="margin-top: 2em;">
+<div class="content" style="margin-top: 1em;">
   {{ .Content }}
 </div>
 {{ end }}
