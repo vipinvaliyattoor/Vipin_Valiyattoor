@@ -14,10 +14,20 @@
       href="{{ .PrevInSection.Permalink | relURL }}"
       title="{{ .PrevInSection.Title }}"
     >
-      <i class="nav-menu fas fa-chevron-circle-left"></i>
+      <i style="display: block; width: 25px; transform: rotate(270deg);"
+        >{{ partial "icons/chevron" . }}</i
+      >
     </a>
     {{ else }}
-    <i class="nav-menu-disabled fas fa-chevron-circle-left"></i>
+    <i
+      style="
+        display: block;
+        width: 25px;
+        transform: rotate(270deg);
+        color: var(--secondaryText);
+      "
+      >{{ partial "icons/chevron" . }}</i
+    >
     {{ end }}
   </h3>
   <h3>
@@ -26,10 +36,20 @@
       href="{{ .NextInSection.Permalink | relURL }}"
       title="{{ .NextInSection.Title }}"
     >
-      <i class="nav-menu fas fa-chevron-circle-right"></i>
+      <i style="display: block; width: 25px; transform: rotate(90deg);"
+        >{{ partial "icons/chevron" . }}</i
+      >
     </a>
     {{ else }}
-    <i class="nav-menu-disabled fas fa-chevron-circle-right"></i>
+    <i
+      style="
+        display: block;
+        width: 25px;
+        transform: rotate(90deg);
+        color: var(--secondaryText);
+      "
+      >{{ partial "icons/chevron" . }}</i
+    >
     {{ end }}
   </h3>
 </div>

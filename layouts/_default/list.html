@@ -1,9 +1,11 @@
-{{ define "main" }} {{ range $key, $val := (.Paginator 6).Pages }}
-<div style="display: flex; flex-direction: column;">
-  <div
-    class="accordion-title listpage {{ if eq $key 0 }} active {{ end }}"
-    onclick="expandPanel(this)"
-    style="
+{{ define "main" }}
+<div style="margin-top: 2em;">
+  {{ range $key, $val := (.Paginator 6).Pages }}
+  <div style="display: flex; flex-direction: column;">
+    <div
+      class="accordion-title listpage {{ if eq $key 0 }} active {{ end }}"
+      onclick="expandPanel(this)"
+      style="
       position: relative;
       z-index: 1;
       display: flex;
@@ -15,26 +17,23 @@
       border-radius: 5px;
       {{ if gt $key 0 }}margin-top: 1em; {{ end }}
     "
-  >
-    <div>
-      <small style="margin: 2px;">{{ .Date.Format "January 2, 2006" }}</small>
-      <h1 
-        style="
-          padding: 3px 0;
-          border-radius: 3px;
-          font-size: 1.3em;
-          font-weight: 700;
-        "
-      >
-        <a class="read-more"
-          href="{{ .Permalink }}">
-          {{ .Title }}</a
+    >
+      <div>
+        <small style="margin: 2px;">{{ .Date.Format "January 2, 2006" }}</small>
+        <h1
+          style="
+            padding: 3px 0;
+            border-radius: 3px;
+            font-size: 1.3em;
+            font-weight: 700;
+          "
         >
-      </h1>
-    </div>
-    <i
-      class="chevron {{ if eq $key 0 }} active {{ end }}"
-      style="
+          <a class="read-more" href="{{ .Permalink }}"> {{ .Title }}</a>
+        </h1>
+      </div>
+      <i
+        class="chevron {{ if eq $key 0 }} active {{ end }}"
+        style="
         transition: 0.3s ease-out;
         width: 15px;
         display: flex;
@@ -42,44 +41,44 @@
         transform: {{ if eq $key 0 }} rotate(180deg) {{ else }} rotate(90deg) {{ end }};
         color: var(--primaryLinks);
       "
-    >
-      {{ partial "icons/chevron" . }}
-    </i>
-  </div>
-  <div
-    class="panel listpage {{ if eq $key 0 }} active {{ end }}"
-    style="
-      overflow: hidden;
-      width: 99%;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: var(--secondaryBg);
-      border-radius: 0 0 5px 5px;
-    "
-  >
-    <div style="padding: 0.5em 0.5em 1em 0.5em;">
-      <div style="margin-bottom: 1em; font-size: 0.85em;">
-        {{ partial "metadata" . }}
-      </div>
-      <p>
-        {{ .Summary | plainify | truncate 180 }}
-      </p>
-      <a
-        style="
-          padding: 5px;
-          border: solid 1px var(--primaryLinks);
-          text-decoration: none;
-          border-radius: 5px;
-          font-size: 1em;
-        "
-        href="{{ .Permalink }}"
-        >Read More...</a
       >
+        {{ partial "icons/chevron" . }}
+      </i>
+    </div>
+    <div
+      class="panel listpage {{ if eq $key 0 }} active {{ end }}"
+      style="
+        overflow: hidden;
+        width: 99%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: var(--secondaryBg);
+        border-radius: 0 0 5px 5px;
+      "
+    >
+      <div style="padding: 0.5em 0.5em 1em 0.5em;">
+        <div style="margin-bottom: 1em; font-size: 0.85em;">
+          {{ partial "metadata" . }}
+        </div>
+        <p>
+          {{ .Summary | plainify | truncate 180 }}
+        </p>
+        <a
+          style="
+            padding: 5px;
+            border: solid 1px var(--primaryLinks);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+          "
+          href="{{ .Permalink }}"
+          >Read More...</a
+        >
+      </div>
     </div>
   </div>
+  {{ end }}
 </div>
-
-{{ end }}
 <script>
   const expandPanel = (elem) => {
     if (!event.target.classList.contains("read-more")) {

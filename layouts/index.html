@@ -34,10 +34,10 @@
       <i style="width: 25px; display: flex; margin-right: 0.3em;">
         {{ partial (print "icons/" $current.icon) . }}
       </i>
-      <h2>{{ $current.title -}}</h2>
+      <h2 style="margin: 0 0 0.15em 0;">{{ $current.title -}}</h2>
     </div>
-    <div
-      class="panel {{ if .expand }} active {{ end }} overflow-hidden"
+    <div style="overflow: hidden; margin: 0;"
+      class="panel {{ if .expand }} active {{ end }}"
       {{ if $current.panelid }}
       id="{{ $current.panelid }}"
       {{ end }}

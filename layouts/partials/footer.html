@@ -14,12 +14,13 @@
     style="border-top: solid 1px var(--primaryLinks); padding-top: 1em;"
     {{ end }}
   >
-    <span class="markdownify">{{ .Site.Params.copyright | markdownify }}</span>
-    <br />
-    <span
+    <p style="margin: 5px 0;">{{ .Site.Params.copyright | markdownify }}</p>
+
+    <p
+      style="margin: 0
       {{ if not .Site.Params.theme.showAttribute }}
-      style="font-size: 0px;"
-      {{ end }}
+      font-size: 0px;
+      {{ end }}"
     >
       <a href="https://github.com/darshanbaral/aafu">
         aafu
@@ -28,6 +29,6 @@
       <a href="https://www.darshanbaral.com/">
         darshan
       </a>
-    </span>
+    </p>
   </div>
 </footer>
