@@ -1,26 +1,25 @@
 <div style="display: flex; flex-direction: column;">
-  Reading Time: {{ if gt .ReadingTime 1 }} {{ .ReadingTime }}  minutes {{ else }} < 1 minute {{ end }}
-  {{ $params := .Params }} {{ range $name, $value := .Site.Taxonomies }}
+  <p style="margin: 2px 0;">
+    Reading Time:
+  {{ if gt .ReadingTime 1 }}
+  {{ .ReadingTime }} minutes
+  {{ else }}
+  < 1 minute {{ end }}
+</p>
+  {{ $params := .Params }}
+  {{ range $name, $value := .Site.Taxonomies }}
   {{ if index $params $name }}
   <p style="margin: 2px 0;">
     {{ $name | humanize }}: {{ range index $params $name }}
     <a
+      class="metadata"
       href="{{ $name | relURL }}/{{ . | urlize }}"
       title="{{ $name }}"
-      style="
-        padding: 1px 3px;
-        margin: 0 2px;
-        border: solid 1px var(--primaryLinks);
-        border-radius: 3px;
-        text-decoration: none;
-        color: var(--primaryLinks);
-        background-color: var(--secondaryBg);
-      "
+      style="margin: 0 2px; text-decoration: none; color: var(--primaryLinks);"
     >
       {{- . -}}
     </a>
     {{ end }}
   </p>
-  {{ end }}
-  {{ end }}
+  {{ end }} {{ end }}
 </div>

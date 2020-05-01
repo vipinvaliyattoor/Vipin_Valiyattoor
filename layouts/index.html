@@ -17,26 +17,26 @@
         align-items: center;
       "
     >
-      {{ partial "profilePhoto" . }}
-      {{ partial "infoAndSocial" . }}
-      {{ partial "footer" . }}
+      {{ partial "profilePhoto" . }} {{ partial "infoAndSocial" . }}
+       {{ partial "footer" . }}
     </div>
   </div>
 
   <div class="accordion-area">
-    {{ range .Site.Params.showInAccordion }}
+    {{ range .Site.Params.showInAccordion }} 
     {{ $current := index $.Site.Params .item }}
     <div
       class="accordion"
       onclick="expandAccordion(this)"
-      style="cursor: pointer; display: flex;"
+      style="cursor: pointer; display: flex; align-items: end;"
     >
-      <i style="width: 25px; display: flex; margin-right: 0.3em;">
+      <i style="font-size: 1.7em; margin-right: 0.2em;">
         {{ partial (print "icons/" $current.icon) . }}
       </i>
-      <h2 style="margin: 0 0 0.15em 0;">{{ $current.title -}}</h2>
+      <h2 style="margin: 0;">{{ $current.title -}}</h2>
     </div>
-    <div style="overflow: hidden; margin: 0;"
+    <div
+      style="overflow: hidden; margin-top: 0.25em;"
       class="panel {{ if .expand }} active {{ end }}"
       {{ if $current.panelid }}
       id="{{ $current.panelid }}"

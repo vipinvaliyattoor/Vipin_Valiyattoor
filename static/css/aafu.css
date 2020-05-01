@@ -42,16 +42,12 @@ h6 {
 .top-h1 {
   font-size: 2.5em;
 }
-P {
+p,
+dl,
+dt,
+dd,
+li {
   line-height: 1.5em;
-}
-.profile-area {
-  width: 45%;
-  max-width: 450px;
-  min-width: 350px;
-}
-.accordion-area {
-  padding-left: 1em;
 }
 .accordion-title.listpage {
   background-color: var(--primaryBg);
@@ -68,18 +64,29 @@ P {
   max-height: 0;
   transition: 0.3s ease-out;
 }
+.panel.active {
+  margin-bottom: 1em;
+}
 .panel.active.listpage {
   border: solid 1px var(--primaryLinks);
   box-shadow: 0px 0px 3px 1px var(--shadow) !important;
 }
-@media only screen and (max-width: 600px) {
+.profile-area {
+  min-width: 350px;
+  flex: 1;
+}
+.accordion-area {
+  padding-left: 1em;
+  width: 60%;
+}
+@media only screen and (max-width: 750px) {
   .home-page {
     flex-wrap: wrap;
   }
   .profile-area {
     width: 100%;
     max-width: initial;
-    min-width: initial;
+    min-width: 350px;
   }
   .accordion-area {
     margin-top: 1.5em;
@@ -185,9 +192,10 @@ th,
 td {
   border: solid 1px var(--primaryLinks);
   padding: 5px;
+  text-align: left;
 }
 .main-menu > a {
-  padding: 2px 4px;
+  padding: 2px 7px;
   border: solid 1px var(--primaryLinks);
   margin-right: 1em;
   border-radius: 6px;
@@ -205,6 +213,10 @@ kbd {
   background-color: var(--primaryText);
   border-radius: 0.2rem;
 }
-dl {
-  margin: 0.5em 0;
+svg {
+  height: 1em;
+  width: 1em;
+}
+.metadata::before {
+  content: "#";
 }

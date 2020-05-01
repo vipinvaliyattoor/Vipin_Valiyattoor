@@ -1,13 +1,11 @@
 {{ range .Site.Params.education.list }}
-<dl>
-  <dt>{{ .degree }}</dt>
-  <dd class="mb-0 ml-3">{{ .dates }} &middot; {{ .college }}</dd>
+<dl style="margin: 0.6em 0 0 0;">
+  <dt style="margin-left: 0.5em;">{{ .degree }}</dt>
+  <dd style="margin-left: 1em;">{{ .dates }} &middot; {{ .college }}</dd>
   {{ if .thesis_url }}
-  <dd class="mb-0 ml-4">
+  <dd style="margin-left: 1em;">
     Thesis:
-    <a href="{{ .thesis_url }}"
-      ><i>{{ .thesis_title }}</i></a
-    >
+    <a href="{{ .thesis_url }}"><i>{{ .thesis_title }}</i></a>
   </dd>
   {{ end }}
 </dl>

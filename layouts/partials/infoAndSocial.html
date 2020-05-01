@@ -7,12 +7,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 25px 0;
+    padding: 5px 0;
   "
 >
   {{ range .Site.Params.social.list }}  
     <a href="{{ .url }}">
-      <i class="zoomlink">
+      <i class="zoomlink" style="font-size: 2em;">
         {{ partial (print "icons/" .icon) . }}
       </i>
     </a>
